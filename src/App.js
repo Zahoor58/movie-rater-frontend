@@ -1,5 +1,8 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
+import MovieList from "./components/movie-list";
+
+
 
 function App() {
   const [movies, setMovies] = useState(["Movie 1", "Movie 2"]);
@@ -14,18 +17,14 @@ function App() {
       .then((resp) => resp.json())
       .then((resp) => setMovies(resp))
       .catch((error) => console.log(error))
-  }, []);
+  },[])
   return (
     <div className="App">
       <header className="App-header">
         <h1> Movie Rater </h1>
       </header>
       <div className="layout">
-        <div>
-          {movies.map((movie) => {
-            return <h1>{movie}</h1>;
-          })}
-        </div>
+        <MovieList movies={movies}/>
         <div>Movie Details</div>
       </div>
     </div>
