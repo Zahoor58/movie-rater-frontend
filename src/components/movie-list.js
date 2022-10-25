@@ -10,6 +10,7 @@ function MovieList(props) {
           return (
             <div key={index}>
             <h1 onClick={movieClicked(movie)}> {movie.title} </h1>
+
             </div>
           )
         })}
