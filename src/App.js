@@ -6,6 +6,9 @@ import MovieDetails from "./components/movie-details";
 function App() {
   const [movies, setMovies] = useState(["Movie 1", "Movie 2"]);
   const [selectMovies,setSelectedMovies]=useState(null);
+  const loadMovie=movie=>{
+    setSelectedMovies(movie)
+  }
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/movies/", {
       method: "GET",
@@ -30,7 +33,7 @@ function App() {
       </header>
       <div className="layout">
         <MovieList movies={movies} movieClicked={movieClicked} />
-        <MovieDetails movie={selectMovies}/>
+        <MovieDetails movie={selectMovies} updateMovie={loadMovie}/>
       </div>
     </div>
   );
