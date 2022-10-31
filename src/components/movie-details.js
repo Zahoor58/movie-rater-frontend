@@ -30,8 +30,8 @@ function MovieDetails(props) {
         Authorization: "Token bab9a0296938f8b1e19845b146e6ee86407f2fef",
       },
     })
-      .then(resp => resp.json())
-      .then(resp => props.updateMovie(resp))
+      .then((resp) => resp.json())
+      .then((resp) => props.updateMovie(resp))
       .catch((error) => console.log(error));
   };
   return (
