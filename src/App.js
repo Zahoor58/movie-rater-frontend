@@ -8,9 +8,7 @@ function App() {
   const [movies, setMovies] = useState(["Movie 1", "Movie 2"]);
   const [selectMovies,setSelectedMovies]=useState(null);
   const [editedMovie,setEditMovie]=useState(null);
-  const loadMovie=movie=>{
-    setSelectedMovies(movie)
-  }
+  
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/movies/", {
       method: "GET",
@@ -24,11 +22,13 @@ function App() {
       .catch((error) => console.log(error));
   }, []);
 
-  const movieClicked=movie=>{
+  const loadMovie=movie=>{
     setSelectedMovies(movie);
+    setEditMovie(null);
   }
  const EditClicked=movie=>{
   setEditMovie(movie);
+  setSelectedMovies(null);
 }
   return (
     <div className="App">
@@ -36,7 +36,7 @@ function App() {
         <h1> Movie Rater </h1>
       </header>
       <div className="layout">
-        <MovieList movies={movies} movieClicked={movieClicked} EditClicked={EditClicked}/>
+        <MovieList movies={movies} movieClicked={loadMovie} EditClicked={EditClicked}/>
         <MovieDetails movie={selectMovies} updateMovie={loadMovie}/>
         <MovieForm movie={editedMovie}></MovieForm>
       </div>

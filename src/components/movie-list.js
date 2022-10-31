@@ -13,7 +13,7 @@ function MovieList(props) {
     <div>
       {props.movies && props.movies.map((movie,index) => {
           return (
-            <div key={index}>
+            <div key={index} className="movie-item">
             <h1 onClick={movieClicked(movie)}> {movie.title} </h1>
             <FontAwesomeIcon icon={faEdit} onClick={()=>EditClicked(movie)}/>
             <FontAwesomeIcon icon={faTrash}/>
