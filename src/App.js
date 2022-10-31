@@ -2,10 +2,12 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import MovieList from "./components/movie-list";
 import MovieDetails from "./components/movie-details";
+import MovieForm from "./components/movie-form";
 
 function App() {
   const [movies, setMovies] = useState(["Movie 1", "Movie 2"]);
   const [selectMovies,setSelectedMovies]=useState(null);
+  const [editedMovie,setEditMovie]=useState(null);
   const loadMovie=movie=>{
     setSelectedMovies(movie)
   }
@@ -25,15 +27,18 @@ function App() {
   const movieClicked=movie=>{
     setSelectedMovies(movie);
   }
-
+ const EditClicked=movie=>{
+  setEditMovie(movie);
+}
   return (
     <div className="App">
       <header className="App-header">
         <h1> Movie Rater </h1>
       </header>
       <div className="layout">
-        <MovieList movies={movies} movieClicked={movieClicked} />
+        <MovieList movies={movies} movieClicked={movieClicked} EditClicked={EditClicked}/>
         <MovieDetails movie={selectMovies} updateMovie={loadMovie}/>
+        <MovieForm movie={editedMovie}></MovieForm>
       </div>
     </div>
   );
